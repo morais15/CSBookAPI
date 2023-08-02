@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CSBookAPI.Data;
 using CSBookAPI.Domain;
 
-namespace CSBookAPI
+namespace CSBookAPI.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,10 +25,10 @@ namespace CSBookAPI
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBook()
         {
-          if (_context.Book == null)
-          {
-              return NotFound();
-          }
+            if (_context.Book == null)
+            {
+                return NotFound();
+            }
             return await _context.Book.ToListAsync();
         }
 
@@ -36,10 +36,10 @@ namespace CSBookAPI
         [HttpGet("{id}")]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
-          if (_context.Book == null)
-          {
-              return NotFound();
-          }
+            if (_context.Book == null)
+            {
+                return NotFound();
+            }
             var book = await _context.Book.FindAsync(id);
 
             if (book == null)
@@ -86,10 +86,10 @@ namespace CSBookAPI
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
-          if (_context.Book == null)
-          {
-              return Problem("Entity set 'CSBookAPIContext.Book'  is null.");
-          }
+            if (_context.Book == null)
+            {
+                return Problem("Entity set 'CSBookAPIContext.Book'  is null.");
+            }
             _context.Book.Add(book);
             await _context.SaveChangesAsync();
 
